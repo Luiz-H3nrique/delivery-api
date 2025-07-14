@@ -45,7 +45,6 @@ public class ClienteController {
         return ResponseEntity.ok(atualizado);
     }
 
-
     @PatchMapping("/{id}/ativo")
     public ResponseEntity<Void> alternarStatusAtivo(@PathVariable Long id) {
         clienteService.ativarDesativar(id);
