@@ -41,6 +41,9 @@ public class ClienteServiceImpl implements ClienteService {
         return clienteRepository.findById(id)
                 .map(c -> {
                     c.setNome(atualizado.getNome());
+                    c.setEmail(atualizado.getEmail());
+                    c.setTelefone(atualizado.getTelefone());
+                    c.setEndereco(atualizado.getEndereco());
                     return clienteRepository.save(c);
                 }).orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
     }

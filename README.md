@@ -1,6 +1,16 @@
 # delivery-api
 Projeto desenvolvido durante o curso Arquitetura de Sistemas da Qualifica SP
 
+# Índice
+
+- [Delivery Tech API](#delivery-tech-api)
+- [🚀 Tecnologias](#-tecnologias)
+- [⚡ Recursos Modernos Utilizados](#-recursos-modernos-utilizados)
+- [🏃‍♂️ Como executar](#-como-executar)
+- [📋 Endpoints Globais](#-endpoints-globais)
+- [📂 Endpoints - Cliente](#-endpoints---cliente)
+    - [📥 Criar Cliente](#-criar-cliente)
+
 # Delivery Tech API
 
 Sistema de delivery desenvolvido com Spring Boot e Java 21.
@@ -43,8 +53,6 @@ API para gerenciar clientes com operações CRUD e controle de status ativo/inat
 | GET     | `/clientes/{id}`       | Buscar cliente por ID            |
 | PUT     | `/clientes/{id}`       | Atualizar cliente                |
 | PATCH   | `/clientes/{id}/ativo` | Alternar status ativo/inativo   |
-| DELETE  | `/clientes/{id}`       | Deletar cliente                 |
-
 ---
 
 ### 📥 Criar Cliente
@@ -58,24 +66,17 @@ API para gerenciar clientes com operações CRUD e controle de status ativo/inat
   "nome": "João da Silva",
   "email": "joao@email.com",
   "telefone": "(11) 99999-9999",
-  "endereco": "Rua das Flores, 123",
+  "endereco": "Rua das Flores, 123"
 }
 
 ```
+### 📋 Listar Clientes Ativos
 
-**Response (200 ok)**:
-```json
-{
-  "id": 1,
-  "nome": "João da Silva",
-  "email": "joao@email.com",
-  "id": 1,
-  "nome": "João da Silva",
-  "email": "joao@email.com",
-  "telefone": "(11) 99999-9999",
-  "endereco": "Rua das Flores, 123",
-  "ativo": true
-}
-```
+### 🔍 Buscar Cliente por ID
 
+### ✏️ Atualizar Cliente
+
+### 🔄 Alternar Status Ativo/Inativo
+
+### 🗑️ Deletar Cliente
 
