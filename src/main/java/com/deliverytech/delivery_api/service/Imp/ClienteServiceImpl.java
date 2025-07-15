@@ -4,7 +4,6 @@ import com.deliverytech.delivery_api.model.Cliente;
 import com.deliverytech.delivery_api.repository.ClienteRepository;
 import com.deliverytech.delivery_api.service.ClienteService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +19,10 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public Cliente cadastrar(Cliente cliente) {
+        if (clienteRepository.existsByEmail(cliente.getEmail())) {
+            throw new IllegalArgumentException("E-mail já está em uso: " + cliente.getEmail());
+        }
+
         return clienteRepository.save(cliente);
     }
 
@@ -38,6 +41,9 @@ public class ClienteServiceImpl implements ClienteService {
         return clienteRepository.findById(id)
                 .map(c -> {
                     c.setNome(atualizado.getNome());
+                    c.setEmail(atualizado.getEmail());
+                    c.setTelefone(atualizado.getTelefone());
+                    c.setEndereco(atualizado.getEndereco());
                     return clienteRepository.save(c);
                 }).orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
     }
@@ -48,13 +54,6 @@ public class ClienteServiceImpl implements ClienteService {
             c.setAtivo(!c.isAtivo());
             clienteRepository.save(c);
         });
-    }
-    private void simulateDelay() {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
     }
 
 }

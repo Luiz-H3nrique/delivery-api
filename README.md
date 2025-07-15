@@ -1,6 +1,16 @@
 # delivery-api
 Projeto desenvolvido durante o curso Arquitetura de Sistemas da Qualifica SP
 
+# Índice
+
+- [Delivery Tech API](#delivery-tech-api)
+- [🚀 Tecnologias](#-tecnologias)
+- [⚡ Recursos Modernos Utilizados](#-recursos-modernos-utilizados)
+- [🏃‍♂️ Como executar](#-como-executar)
+- [📋 Endpoints Globais](#-endpoints-globais)
+- [📂 Endpoints - Cliente](#-endpoints---cliente)
+    - [📥 Criar Cliente](#-criar-cliente)
+
 # Delivery Tech API
 
 Sistema de delivery desenvolvido com Spring Boot e Java 21.
@@ -25,16 +35,48 @@ Sistema de delivery desenvolvido com Spring Boot e Java 21.
 3. Execute: `./mvnw spring-boot:run`
 4. Acesse: http://localhost:8080/health
 
-## 📋 Endpoints
+## 📋 Endpoints Globais
 - GET /health - Status da aplicação (inclui versão Java)
 - GET /info - Informações da aplicação
 - GET /h2-console - Console do banco H2
 
-## 🔧 Configuração
-- Porta: 8080
-- Banco: H2 em memória
-- Profile: development
+---
 
-## 👨‍💻 Desenvolvedor
-Luiz Henrique
-Desenvolvido com JDK 21 e Spring Boot 3.5.3
+## 📂 Endpoints - Cliente
+
+API para gerenciar clientes com operações CRUD e controle de status ativo/inativo.
+
+| Método  | Endpoint               | Descrição                         |
+|---------|------------------------|---------------------------------|
+| POST    | `/clientes`            | Cadastrar novo cliente           |
+| GET     | `/clientes`            | Listar clientes ativos           |
+| GET     | `/clientes/{id}`       | Buscar cliente por ID            |
+| PUT     | `/clientes/{id}`       | Atualizar cliente                |
+| PATCH   | `/clientes/{id}/ativo` | Alternar status ativo/inativo   |
+---
+
+### 📥 Criar Cliente
+
+**POST** `/clientes`
+
+**Request Body** (JSON):
+
+```json
+{
+  "nome": "João da Silva",
+  "email": "joao@email.com",
+  "telefone": "(11) 99999-9999",
+  "endereco": "Rua das Flores, 123"
+}
+
+```
+### 📋 Listar Clientes Ativos
+
+### 🔍 Buscar Cliente por ID
+
+### ✏️ Atualizar Cliente
+
+### 🔄 Alternar Status Ativo/Inativo
+
+### 🗑️ Deletar Cliente
+

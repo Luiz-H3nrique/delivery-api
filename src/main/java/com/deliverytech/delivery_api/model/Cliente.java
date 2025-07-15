@@ -1,5 +1,6 @@
 package com.deliverytech.delivery_api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class Cliente {
     private boolean ativo;
 
     @OneToMany(mappedBy = "cliente")
+    @JsonIgnore // TODO : Provisorio ate ser aplicado DTO
     private List<Pedido> pedidos;
 
     public Long getId() {
