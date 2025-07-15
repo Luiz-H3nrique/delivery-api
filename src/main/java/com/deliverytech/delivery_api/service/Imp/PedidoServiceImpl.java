@@ -6,6 +6,7 @@ import com.deliverytech.delivery_api.repository.PedidoRepository;
 import com.deliverytech.delivery_api.service.PedidoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +17,7 @@ public class PedidoServiceImpl implements PedidoService {
 
     private final PedidoRepository pedidoRepository;
 
+    @Transactional
     @Override
     public Pedido criar(Pedido pedido) {
         pedido.setStatus(StatusPedido.CRIADO);
