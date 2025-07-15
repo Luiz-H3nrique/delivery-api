@@ -23,6 +23,25 @@ public class Restaurante {
     private BigDecimal taxaEntrega;
     private Integer tempoEntregaMinutos;
     private boolean ativo;
+    private BigDecimal avaliacao;
+    public BigDecimal getAvaliacao() {
+        return avaliacao;
+    }
+    public Restaurante() {
+    }
+
+    public Restaurante(String nome, String categoria, String telefone,
+                       BigDecimal taxaEntrega, Integer tempoEntregaMinutos) {
+        this.nome = nome;
+        this.categoria = categoria;
+        this.telefone = telefone;
+        this.taxaEntrega = taxaEntrega;
+        this.tempoEntregaMinutos = tempoEntregaMinutos;
+    }
+
+    public void setAvaliacao(BigDecimal avaliacao) {
+        this.avaliacao = avaliacao;
+    }
 
     @OneToMany(mappedBy = "restaurante")
     private List<Produto> produtos;
