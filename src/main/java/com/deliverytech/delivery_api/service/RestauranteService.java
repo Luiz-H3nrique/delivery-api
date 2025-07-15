@@ -1,8 +1,7 @@
 package com.deliverytech.delivery_api.service;
 
-import com.deliverytech.delivery_api.dto.request.RestauranteRequest;
+import com.deliverytech.delivery_api.dto.request.restaurante.RestauranteRequest;
 import com.deliverytech.delivery_api.dto.response.RestauranteResponse;
-import com.deliverytech.delivery_api.model.Restaurante;
 
 import java.math.BigDecimal;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.deliverytech.delivery_api.dto.request;
+package com.deliverytech.delivery_api.dto.request.restaurante;
 
 import jakarta.validation.constraints.NotBlank;
 
