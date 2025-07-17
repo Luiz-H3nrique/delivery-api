@@ -3,12 +3,10 @@ package com.deliverytech.delivery_api.model;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

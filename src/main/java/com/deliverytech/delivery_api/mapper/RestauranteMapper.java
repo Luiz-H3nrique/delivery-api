@@ -17,7 +17,8 @@ public class RestauranteMapper {
                 dto.categoria(),
                 dto.telefone(),
                 dto.taxaEntrega(),
-                dto.tempoEntregaMinutos()
+                dto.tempoEntregaMinutos(),
+                dto.endereco()
         );
     }
 
@@ -25,11 +26,13 @@ public class RestauranteMapper {
         return new RestauranteResponse(
                 restaurante.getId(),
                 restaurante.getNome(),
+                restaurante.getEndereco(),
                 restaurante.getCategoria(),
                 restaurante.getTelefone(),
                 restaurante.getTaxaEntrega(),
                 restaurante.getTempoEntregaMinutos(),
                 restaurante.isAtivo()
+
         );
     }
 }

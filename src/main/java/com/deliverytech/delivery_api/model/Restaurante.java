@@ -31,12 +31,13 @@ public class Restaurante {
     }
 
     public Restaurante(String nome, String categoria, String telefone,
-                       BigDecimal taxaEntrega, Integer tempoEntregaMinutos) {
+                       BigDecimal taxaEntrega, Integer tempoEntregaMinutos , String endereco) {
         this.nome = nome;
         this.categoria = categoria;
         this.telefone = telefone;
         this.taxaEntrega = taxaEntrega;
         this.tempoEntregaMinutos = tempoEntregaMinutos;
+        this.endereco = endereco;
     }
 
     public void setAvaliacao(BigDecimal avaliacao) {

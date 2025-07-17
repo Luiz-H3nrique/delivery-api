@@ -15,6 +15,9 @@ public record RestauranteRequest(
         @NotBlank(message = "O telefone é obrigatório.")
         String telefone,
 
+        @NotBlank(message = "O endereco é obrigatório.")
+        String endereco,
+
         @NotNull(message = "A taxa de entrega é obrigatória.")
         @DecimalMin(value = "0.0", inclusive = false, message = "A taxa de entrega deve ser maior que zero.")
         BigDecimal taxaEntrega,

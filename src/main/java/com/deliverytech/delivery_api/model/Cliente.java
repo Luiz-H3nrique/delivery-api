@@ -2,9 +2,6 @@ package com.deliverytech.delivery_api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
-import lombok.NoArgsConstructor;
-
 import java.util.List;
 
 

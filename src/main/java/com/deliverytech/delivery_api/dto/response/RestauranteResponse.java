@@ -5,9 +5,11 @@ import java.math.BigDecimal;
 public record RestauranteResponse(
         Long id,
         String nome,
+        String endereco,
         String categoria,
         String telefone,
         BigDecimal taxaEntrega,
         Integer tempoEntregaMinutos,
-        Boolean ativo
+        boolean ativo
+
 ) {}
