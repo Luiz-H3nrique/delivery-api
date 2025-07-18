@@ -1,9 +1,6 @@
 package com.deliverytech.delivery_api.controller;
 
-import com.deliverytech.delivery_api.dto.request.restaurante.RestauranteCategoriaRequest;
-import com.deliverytech.delivery_api.dto.request.restaurante.RestauranteNomeRequest;
-import com.deliverytech.delivery_api.dto.request.restaurante.RestauranteRequest;
-import com.deliverytech.delivery_api.dto.request.restaurante.RestauranteTaxaEntregaRequest;
+import com.deliverytech.delivery_api.dto.request.restaurante.*;
 import com.deliverytech.delivery_api.dto.response.restaurante.RestauranteResponse;
 import com.deliverytech.delivery_api.service.RestauranteService;
 import jakarta.validation.Valid;
@@ -42,8 +39,8 @@ public class RestauranteController {
     }
 
     @GetMapping("avaliacao/buscar")
-    public ResponseEntity<List<RestauranteResponse>> buscarPorAvaliacaoMinima(@RequestParam BigDecimal avaliacaoMinima) {
-        List<RestauranteResponse> restaurantes = restauranteService.buscarPorAvaliacaoMinima(avaliacaoMinima);
+    public ResponseEntity<List<RestauranteResponse>> buscarPorAvaliacaoMinima(@RequestBody @Valid RestauranteAvaliacaoRequest restauranteAvaliacaoRequest) {
+        List<RestauranteResponse> restaurantes = restauranteService.buscarPorAvaliacaoMinima(restauranteAvaliacaoRequest.avaliacaoMinima());
         return restaurantes.isEmpty()
                 ? ResponseEntity.notFound().build()
                 : ResponseEntity.ok(restaurantes);
