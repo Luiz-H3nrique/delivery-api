@@ -1,6 +1,5 @@
 package com.deliverytech.delivery_api.repository;
 
-import com.deliverytech.delivery_api.dto.response.ProdutoResponse;
 import com.deliverytech.delivery_api.model.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

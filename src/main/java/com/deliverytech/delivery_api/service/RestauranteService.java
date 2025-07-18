@@ -1,6 +1,5 @@
 package com.deliverytech.delivery_api.service;
 
-import com.deliverytech.delivery_api.dto.request.restaurante.RestauranteNomeRequest;
 import com.deliverytech.delivery_api.dto.request.restaurante.RestauranteRequest;
 import com.deliverytech.delivery_api.dto.response.restaurante.RestauranteResponse;
 
