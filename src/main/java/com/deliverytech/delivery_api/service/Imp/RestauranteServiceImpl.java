@@ -10,6 +10,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -47,6 +48,14 @@ public class RestauranteServiceImpl implements RestauranteService {
         return restauranteRepository.findByCategoria(categoria).stream()
                 .map(RestauranteMapper::toResponse)
                 .collect(Collectors.toList());
+
+    }
+
+    @Override
+    public List<RestauranteResponse> buscarPorNome(String nome) {
+        return restauranteRepository.findByNomeContainingIgnoreCase(nome).stream()
+                .map(RestauranteMapper::toResponse)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -64,4 +73,26 @@ public class RestauranteServiceImpl implements RestauranteService {
         Restaurante atualizado = restauranteRepository.save(restaurante);
         return RestauranteMapper.toResponse(atualizado);
     }
+
+    @Override
+    public List<RestauranteResponse> listarAtivos() {
+        return restauranteRepository.findByAtivoTrue().stream()
+                .map(RestauranteMapper::toResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<RestauranteResponse> buscarPorAvaliacaoMinima(BigDecimal avaliacaoMinima) {
+        return restauranteRepository.findByAvaliacaoGreaterThanEqual(avaliacaoMinima).stream()
+                .map(RestauranteMapper::toResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<RestauranteResponse> buscarPorTaxaEntregaMaxima(BigDecimal taxaEntregaMaxima) {
+        return restauranteRepository.findByTaxaEntregaLessThanEqual(taxaEntregaMaxima).stream()
+                .map(RestauranteMapper::toResponse)
+                .collect(Collectors.toList());
+    }
+
 }
