@@ -3,6 +3,7 @@ Projeto desenvolvido durante o curso Arquitetura de Sistemas da Qualifica SP
 
 # Índice
 
+
 - [Delivery Tech API](#delivery-tech-api)
 - [🚀 Tecnologias](#-tecnologias)
 - [⚡ Recursos Modernos Utilizados](#-recursos-modernos-utilizados)
