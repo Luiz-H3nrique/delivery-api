@@ -210,7 +210,7 @@ Retorna todos os clientes ativos.
 }
 ```
 
-### 🔄 Alternar Status Ativo/Inativo
+### 🔄 Alternar Status Ativo Inativo
 
 **PATCH** `/clientes/{id}/status`
 
@@ -347,7 +347,7 @@ Retorna todos os restaurantes ativos.
 ]
 ```
 
-### 🔍 Buscar por Avaliação Mínima
+### 🔍 Buscar por Avaliacao Minima
 
 **POST** `/restaurantes/avaliacao/buscar`
 
@@ -372,7 +372,7 @@ Retorna todos os restaurantes ativos.
 ]
 ```
 
-### 🔍 Buscar por Taxa de Entrega Máxima
+### 🔍 Buscar por Taxa de Entrega Maxima
 
 **GET** `/restaurantes/taxaEntrega/buscar`
 
@@ -523,7 +523,7 @@ API para gerenciar produtos dos restaurantes, incluindo cadastro, busca, atualiz
 ]
 ```
 
-### 📋 Listar Produtos Disponíveis
+### 📋 Listar Produtos Disponiveis
 
 **GET** `/produtos/disponiveis`
 
@@ -623,15 +623,15 @@ Produto ficará indisponível para pedidos.
 
 API para gerenciar pedidos, incluindo criação, busca, atualização, cancelamento e listagem por cliente/restaurante.
 
-| Método  | Endpoint                                 | Descrição                                 |
-|---------|------------------------------------------|-------------------------------------------|
-| POST    | `/pedidos`                              | Criar novo pedido                         |
-| GET     | `/pedidos/{id}`                         | Buscar pedido por ID                      |
-| GET     | `/pedidos/cliente?clienteId=1`          | Listar pedidos de um cliente              |
-| GET     | `/pedidos/restaurante?restauranteId=1`  | Listar pedidos de um restaurante          |
-| PUT     | `/pedidos/{id}/status?status=ENTREGUE`  | Atualizar status do pedido                |
-| PUT     | `/pedidos/{id}`                         | Atualizar pedido                          |
-| DELETE  | `/pedidos/{id}`                         | Cancelar pedido                           |
+| Método | Endpoint                               | Descrição                        |
+|--------|----------------------------------------|----------------------------------|
+| POST   | `/pedidos`                             | Criar novo pedido                |
+| GET    | `/pedidos/{id}`                        | Buscar pedido por ID             |
+| GET    | `/pedidos/cliente?clienteId=1`         | Listar pedidos de um cliente     |
+| GET    | `/pedidos/restaurante?restauranteId=1` | Listar pedidos de um restaurante |
+| PUT    | `/pedidos/{id}/status?status=ENTREGUE` | Atualizar status do pedido       |
+| PUT    | `/pedidos/{id}`                        | Atualizar pedido                 |
+| DELETE | `/pedidos/{id}`                        | Cancelar pedido                  |
 
 ---
 
