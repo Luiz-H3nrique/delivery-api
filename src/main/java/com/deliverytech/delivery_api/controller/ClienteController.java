@@ -1,7 +1,12 @@
 package com.deliverytech.delivery_api.controller;
 
+import com.deliverytech.delivery_api.dto.request.cliente.ClienteNomeRequest;
+import com.deliverytech.delivery_api.dto.request.cliente.ClienteRequest;
+import com.deliverytech.delivery_api.dto.response.cliente.ClienteRanking;
+import com.deliverytech.delivery_api.dto.response.cliente.ClienteResponse;
 import com.deliverytech.delivery_api.model.Cliente;
 import com.deliverytech.delivery_api.service.ClienteService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,8 +24,8 @@ public class ClienteController {
 
 
     @PostMapping
-    public ResponseEntity<Cliente> criar(@RequestBody Cliente cliente) {
-        Cliente criado = clienteService.cadastrar(cliente);
+    public ResponseEntity<ClienteResponse> criar(@RequestBody @Valid ClienteRequest cliente) {
+        ClienteResponse criado = clienteService.cadastrar(cliente);
         return ResponseEntity.ok(criado);
     }
 
@@ -37,6 +42,10 @@ public class ClienteController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+    @GetMapping("/nome")
+    public ResponseEntity<List<ClienteResponse>> buscarPorNome(@RequestBody ClienteNomeRequest clienteNomeRequest) {
+        return ResponseEntity.ok(clienteService.buscarPorNome(clienteNomeRequest.nome()));
+    }
 
 
     @PutMapping("/{id}")
@@ -51,4 +60,15 @@ public class ClienteController {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        clienteService.excluir(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/ranking")
+    public ResponseEntity<List<ClienteRanking>> rankingClientesPorPedidos() {
+        List<ClienteRanking> ranking = clienteService.rankingClientesPorPedidos();
+        return ResponseEntity.ok(ranking);
+    }
 }

@@ -1,25 +1,27 @@
 package com.deliverytech.delivery_api.model;
 
+import com.deliverytech.delivery_api.model.Restaurante;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Pedido {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private LocalDateTime dataPedido;
-    private String enderecoEntrega;
-    private BigDecimal subtotal;
-    private BigDecimal taxaEntrega;
-    private BigDecimal valorTotal;
-
-    @Enumerated(EnumType.STRING)
-    private StatusPedido status;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
@@ -29,86 +31,56 @@ public class Pedido {
     @JoinColumn(name = "restaurante_id")
     private Restaurante restaurante;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-    private List<PedidoItem> itens;
+    private BigDecimal valorTotal;
 
-    public Long getId() {
-        return id;
-    }
+    private String numeroPedido;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private BigDecimal subtotal;
 
-    public LocalDateTime getDataPedido() {
-        return dataPedido;
-    }
+    private String observacoes;
 
-    public void setDataPedido(LocalDateTime dataPedido) {
-        this.dataPedido = dataPedido;
-    }
+    @Enumerated(EnumType.STRING)
+    private StatusPedido status;
 
-    public String getEnderecoEntrega() {
-        return enderecoEntrega;
-    }
+    private final LocalDate dataPedido = LocalDate.now();
 
-    public void setEnderecoEntrega(String enderecoEntrega) {
-        this.enderecoEntrega = enderecoEntrega;
-    }
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemPedido> itens;
 
-    public BigDecimal getSubtotal() {
-        return subtotal;
-    }
+    @Embedded
+    private Endereco enderecoEntrega;
 
-    public void setSubtotal(BigDecimal subtotal) {
-        this.subtotal = subtotal;
-    }
-
-    public BigDecimal getTaxaEntrega() {
-        return taxaEntrega;
-    }
-
-    public void setTaxaEntrega(BigDecimal taxaEntrega) {
-        this.taxaEntrega = taxaEntrega;
-    }
-
-    public BigDecimal getValorTotal() {
-        return valorTotal;
-    }
-
-    public void setValorTotal(BigDecimal valorTotal) {
-        this.valorTotal = valorTotal;
-    }
-
-    public StatusPedido getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusPedido status) {
-        this.status = status;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public Restaurante getRestaurante() {
-        return restaurante;
-    }
-
-    public void setRestaurante(Restaurante restaurante) {
-        this.restaurante = restaurante;
-    }
-
-    public List<PedidoItem> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<PedidoItem> itens) {
+    // Personaliza o setter para itens, para setar a referência bidirecional
+    public void setItens(List<ItemPedido> itens) {
         this.itens = itens;
+        if (itens != null) {
+            itens.forEach(item -> item.setPedido(this));
+        }
+    }
+
+    // Método para calcular subtotal somando os subtotais dos itens
+    public BigDecimal calcularSubtotal() {
+        if (itens == null || itens.isEmpty()) {
+            return BigDecimal.ZERO;
+        }
+        return itens.stream()
+                .map(ItemPedido::getSubtotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    // Método para calcular valor total somando subtotal + taxaEntrega (supondo que você tenha taxaEntrega em Restaurante)
+    public void calcularValorTotal() {
+        BigDecimal taxaEntrega = restaurante != null && restaurante.getTaxaEntrega() != null
+                ? restaurante.getTaxaEntrega() : BigDecimal.ZERO;
+
+        this.subtotal = calcularSubtotal();
+        this.valorTotal = this.subtotal.add(taxaEntrega);
+    }
+
+    @PostPersist
+    public void gerarNumeroPedido() {
+        if (this.numeroPedido == null) {
+            this.numeroPedido = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")) + "-" + this.id;
+        }
     }
 }
