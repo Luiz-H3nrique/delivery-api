@@ -3,7 +3,6 @@ Projeto desenvolvido durante o curso Arquitetura de Sistemas da Qualifica SP
 
 # Índice
 
-
 - [Delivery Tech API](#delivery-tech-api)
 - [🚀 Tecnologias](#-tecnologias)
 - [⚡ Recursos Modernos Utilizados](#-recursos-modernos-utilizados)
@@ -350,8 +349,14 @@ Retorna todos os restaurantes ativos.
 
 ### 🔍 Buscar por Avaliação Mínima
 
-**GET** `/restaurantes/avaliacao/buscar?avaliacaoMinima=4.0`
+**POST** `/restaurantes/avaliacao/buscar`
 
+**Request Body:**
+```json
+{
+  "avaliacaoMinima": 4.0
+}
+```
 **Exemplo de resposta:**
 ```json
 [

@@ -1,6 +1,5 @@
 package com.deliverytech.delivery_api.repository;
 
-import com.deliverytech.delivery_api.dto.request.cliente.ClienteRequest;
 import com.deliverytech.delivery_api.dto.response.cliente.ClienteRanking;
 import com.deliverytech.delivery_api.dto.response.cliente.ClienteResponse;
 import com.deliverytech.delivery_api.model.Cliente;

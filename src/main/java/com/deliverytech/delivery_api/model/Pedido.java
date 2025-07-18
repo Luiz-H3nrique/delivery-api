@@ -1,6 +1,5 @@
 package com.deliverytech.delivery_api.model;
 
-import com.deliverytech.delivery_api.model.Restaurante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -2,7 +2,6 @@ package com.deliverytech.delivery_api.service.Imp;
 
 import com.deliverytech.delivery_api.dto.request.pedido.PedidoRequest;
 import com.deliverytech.delivery_api.dto.response.ProdutoResponse;
-import com.deliverytech.delivery_api.dto.response.cliente.ClienteResponse;
 import com.deliverytech.delivery_api.dto.response.pedido.PedidoResponse;
 import com.deliverytech.delivery_api.dto.response.restaurante.RestauranteResponse;
 import com.deliverytech.delivery_api.mapper.PedidoMapper;
@@ -21,8 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-
-import static java.util.Arrays.stream;
 
 @Service
 public class PedidoServiceImpl implements PedidoService {
