@@ -1,5 +1,9 @@
 package com.deliverytech.delivery_api.service.Imp;
 
+import com.deliverytech.delivery_api.dto.request.cliente.ClienteRequest;
+import com.deliverytech.delivery_api.dto.response.cliente.ClienteRanking;
+import com.deliverytech.delivery_api.dto.response.cliente.ClienteResponse;
+import com.deliverytech.delivery_api.mapper.ClienteMapper;
 import com.deliverytech.delivery_api.model.Cliente;
 import com.deliverytech.delivery_api.repository.ClienteRepository;
 import com.deliverytech.delivery_api.service.ClienteService;
@@ -18,12 +22,14 @@ public class ClienteServiceImpl implements ClienteService {
 
 
     @Override
-    public Cliente cadastrar(Cliente cliente) {
-        if (clienteRepository.existsByEmail(cliente.getEmail())) {
-            throw new IllegalArgumentException("E-mail já está em uso: " + cliente.getEmail());
+    public ClienteResponse cadastrar(ClienteRequest cliente) {
+        Cliente novoCliente = ClienteMapper.toEntity(cliente);
+        if (clienteRepository.existsByEmail(novoCliente.getEmail())) {
+            throw new IllegalArgumentException("E-mail já está em uso: " + novoCliente.getEmail());
         }
-
-        return clienteRepository.save(cliente);
+        novoCliente.setAtivo(true);
+        Cliente salvo = clienteRepository.save(novoCliente);
+        return ClienteMapper.toResponse(salvo);
     }
 
     @Override
@@ -56,4 +62,16 @@ public class ClienteServiceImpl implements ClienteService {
         });
     }
 
+    @Override
+    public List<ClienteResponse> buscarPorNome(String nome) {
+        return clienteRepository.findByNomeContainingIgnoreCase(nome);
+    }
+    @Override
+    public List<ClienteRanking> rankingClientesPorPedidos() {
+        return clienteRepository.rankingClientesPorPedidos();
+    }
+    @Override
+    public void excluir(Long id) {
+        clienteRepository.deleteById(id);
+    }
 }

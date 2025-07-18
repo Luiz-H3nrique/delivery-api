@@ -1,14 +1,20 @@
 package com.deliverytech.delivery_api.service;
 
-import com.deliverytech.delivery_api.model.Produto;
+import com.deliverytech.delivery_api.dto.request.ProdutoRequest;
+import com.deliverytech.delivery_api.dto.response.ProdutoResponse;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface ProdutoService {
-    Produto cadastrar(Produto produto);
-    Optional<Produto> buscarPorId(Long id);
-    List<Produto> buscarPorRestaurante(Long restauranteId);
-    Produto atualizar(Long id, Produto produtoAtualizado);
+
+    ProdutoResponse cadastrar(ProdutoRequest produtoRequest);
+
+    Optional<ProdutoResponse> buscarPorId(Long id);
+
+    List<ProdutoResponse> buscarPorRestaurante(Long restauranteId);
+    ProdutoResponse atualizar(Long id, ProdutoRequest produtoAtualizado);
+
     void alterarDisponibilidade(Long id, boolean disponivel);
+
 }

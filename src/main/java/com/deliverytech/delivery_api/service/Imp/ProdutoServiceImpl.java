@@ -1,52 +1,83 @@
 package com.deliverytech.delivery_api.service.Imp;
 
+
+import com.deliverytech.delivery_api.dto.request.ProdutoRequest;
+import com.deliverytech.delivery_api.dto.response.ProdutoResponse;
+import com.deliverytech.delivery_api.mapper.ProdutoMapper;
+import com.deliverytech.delivery_api.mapper.RestauranteMapper;
 import com.deliverytech.delivery_api.model.Produto;
 import com.deliverytech.delivery_api.repository.ProdutoRepository;
 import com.deliverytech.delivery_api.service.ProdutoService;
+import com.deliverytech.delivery_api.service.RestauranteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 @RequiredArgsConstructor
 public class ProdutoServiceImpl implements ProdutoService {
 
     private final ProdutoRepository produtoRepository;
+    private final RestauranteService restauranteService; // Para associar restaurante ao cadastrar ou atualizar
 
     @Override
-    public Produto cadastrar(Produto produto) {
-        return produtoRepository.save(produto);
+    public ProdutoResponse cadastrar(ProdutoRequest produtoRequest) {
+        // Mapear DTO para entidade
+        Produto produto = ProdutoMapper.toEntity(produtoRequest);
+
+        // Se ProdutoRequest tem restauranteId, busque restaurante para associar
+        restauranteService.buscarPorId(produtoRequest.restauranteId())
+                .map(RestauranteMapper::toEntityFromResponse)
+                .ifPresent(produto::setRestaurante);
+
+        Produto salvo = produtoRepository.save(produto);
+
+        return ProdutoMapper.toResponse(salvo);
     }
 
     @Override
-    public Optional<Produto> buscarPorId(Long id) {
-        return produtoRepository.findById(id);
-    }
-
-    @Override
-    public List<Produto> buscarPorRestaurante(Long restauranteId) {
-        return produtoRepository.findByRestauranteId(restauranteId);
-    }
-
-    @Override
-    public Produto atualizar(Long id, Produto atualizado) {
+    public Optional<ProdutoResponse> buscarPorId(Long id) {
         return produtoRepository.findById(id)
-                .map(p -> {
-                    p.setNome(atualizado.getNome());
-                    p.setDescricao(atualizado.getDescricao());
-                    p.setCategoria(atualizado.getCategoria());
-                    p.setPreco(atualizado.getPreco());
-                    return produtoRepository.save(p);
-                }).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+                .map(ProdutoMapper::toResponse);
+    }
+
+    @Override
+    public List<ProdutoResponse> buscarPorRestaurante(Long restauranteId) {
+        return produtoRepository.findByRestauranteId(restauranteId)
+                .stream()
+                .map(ProdutoMapper::toResponse)
+                .toList();
+    }
+
+
+    @Override
+    public ProdutoResponse atualizar(Long id, ProdutoRequest produtoAtualizado) {
+        Produto produto = produtoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+
+        produto.setNome(produtoAtualizado.nome());
+        produto.setDescricao(produtoAtualizado.descricao());
+        produto.setCategoria(produtoAtualizado.categoria());
+        produto.setPreco(produtoAtualizado.preco());
+
+        // Atualiza restaurante associado se informado
+        restauranteService.buscarPorId(produtoAtualizado.restauranteId())
+                .map(RestauranteMapper::toEntityFromResponse)
+                .ifPresent(produto::setRestaurante);
+
+        Produto salvo = produtoRepository.save(produto);
+
+        return ProdutoMapper.toResponse(salvo);
     }
 
     @Override
     public void alterarDisponibilidade(Long id, boolean disponivel) {
-        produtoRepository.findById(id).ifPresent(p -> {
-            p.setDisponivel(disponivel);
-            produtoRepository.save(p);
+        produtoRepository.findById(id).ifPresent(produto -> {
+            produto.setDisponivel(disponivel);
+            produtoRepository.save(produto);
         });
     }
 }

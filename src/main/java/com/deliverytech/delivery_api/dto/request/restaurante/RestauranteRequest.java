@@ -1,5 +1,7 @@
 package com.deliverytech.delivery_api.dto.request.restaurante;
 
+import com.deliverytech.delivery_api.model.Endereco;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
@@ -14,6 +16,9 @@ public record RestauranteRequest(
 
         @NotBlank(message = "O telefone é obrigatório.")
         String telefone,
+
+        @Valid
+        Endereco endereco,
 
         @NotNull(message = "A taxa de entrega é obrigatória.")
         @DecimalMin(value = "0.0", inclusive = false, message = "A taxa de entrega deve ser maior que zero.")
