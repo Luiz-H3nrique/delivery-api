@@ -14,7 +14,7 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
   List<Restaurante> findByAtivoTrue();
   List<Restaurante> findByAvaliacaoGreaterThanEqual(BigDecimal avaliacao);
   List<Restaurante> findByTaxaEntregaLessThanEqual(BigDecimal taxa);
-
+    List<Restaurante> findByNomeContainingIgnoreCase(String nome);
   @Query("SELECT r.nome as nomeRestaurante, " +
           "SUM(p.valorTotal) as totalVendas, " +
           "COUNT(p.id) as quantidePedidos " +

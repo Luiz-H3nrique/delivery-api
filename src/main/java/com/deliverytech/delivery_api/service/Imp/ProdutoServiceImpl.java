@@ -3,6 +3,7 @@ package com.deliverytech.delivery_api.service.Imp;
 
 import com.deliverytech.delivery_api.dto.request.ProdutoRequest;
 import com.deliverytech.delivery_api.dto.response.ProdutoResponse;
+import com.deliverytech.delivery_api.dto.response.produto.ProdutoMaisVendidoResponse;
 import com.deliverytech.delivery_api.mapper.ProdutoMapper;
 import com.deliverytech.delivery_api.mapper.RestauranteMapper;
 import com.deliverytech.delivery_api.model.Produto;
@@ -79,5 +80,32 @@ public class ProdutoServiceImpl implements ProdutoService {
             produto.setDisponivel(disponivel);
             produtoRepository.save(produto);
         });
+    }
+    @Override
+    public List<ProdutoResponse> buscarPorCategoria(String categoria) {
+        return produtoRepository.findByCategoria(categoria)
+                .stream()
+                .map(ProdutoMapper::toResponse)
+                .toList();
+    }
+
+    @Override
+    public List<ProdutoMaisVendidoResponse> buscarMaisVendidos() {
+        return produtoRepository.produtosMaisVendidos()
+                .stream()
+                .map(obj -> new ProdutoMaisVendidoResponse(
+                        (String) obj[0],
+                        ((Number) obj[1]).longValue()
+                ))
+                .toList();
+    }
+
+
+    @Override
+    public List<ProdutoResponse> buscarDisponiveis() {
+        return produtoRepository.findByDisponivelTrue()
+                .stream()
+                .map(ProdutoMapper::toResponse)
+                .toList();
     }
 }
