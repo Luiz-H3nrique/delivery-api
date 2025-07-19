@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/produtos")
-public class ProdutoController{
+public class ProdutoController {
     private final ProdutoService produtoService;
 
     public ProdutoController(ProdutoService produtoService) {
@@ -68,6 +68,14 @@ public class ProdutoController{
     public ResponseEntity<Void> alterarDisponibilidade(@PathVariable Long id, @RequestParam boolean disponivel) {
         produtoService.alterarDisponibilidade(id, disponivel);
         return ResponseEntity.noContent().build();
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        produtoService.deletar(id);
+        return ResponseEntity.noContent().build();
+
     }
 
 }

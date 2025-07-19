@@ -108,4 +108,9 @@ public class ProdutoServiceImpl implements ProdutoService {
                 .map(ProdutoMapper::toResponse)
                 .toList();
     }
+
+    @Override
+    public void deletar(Long id) {
+        produtoRepository.deleteById(id);
+    }
 }

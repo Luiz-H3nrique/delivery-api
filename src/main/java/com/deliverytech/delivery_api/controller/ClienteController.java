@@ -1,5 +1,6 @@
 package com.deliverytech.delivery_api.controller;
 
+import com.deliverytech.delivery_api.dto.request.cliente.ClienteEmailRequest;
 import com.deliverytech.delivery_api.dto.request.cliente.ClienteNomeRequest;
 import com.deliverytech.delivery_api.dto.request.cliente.ClienteRequest;
 import com.deliverytech.delivery_api.dto.response.cliente.ClienteRanking;
@@ -42,6 +43,7 @@ public class ClienteController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
     @GetMapping("/nome")
     public ResponseEntity<List<ClienteResponse>> buscarPorNome(@RequestBody ClienteNomeRequest clienteNomeRequest) {
         return ResponseEntity.ok(clienteService.buscarPorNome(clienteNomeRequest.nome()));
@@ -54,7 +56,7 @@ public class ClienteController {
         return ResponseEntity.ok(atualizado);
     }
 
-    @PatchMapping("/{id}/status ")
+    @PatchMapping("/{id}/status")
     public ResponseEntity<Void> alternarStatusAtivo(@PathVariable Long id) {
         clienteService.ativarDesativar(id);
         return ResponseEntity.noContent().build();
@@ -70,5 +72,11 @@ public class ClienteController {
     public ResponseEntity<List<ClienteRanking>> rankingClientesPorPedidos() {
         List<ClienteRanking> ranking = clienteService.rankingClientesPorPedidos();
         return ResponseEntity.ok(ranking);
+    }
+
+    @GetMapping("/email")
+    public ResponseEntity<List<ClienteResponse>> buscarPorEmail(@RequestBody @Valid ClienteEmailRequest clienteEmailRequest) {
+        List<ClienteResponse> clientes = clienteService.buscarPorEmail(clienteEmailRequest.email());
+        return ResponseEntity.ok(clientes);
     }
 }

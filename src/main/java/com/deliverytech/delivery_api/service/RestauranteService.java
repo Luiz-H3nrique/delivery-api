@@ -21,4 +21,5 @@ public interface RestauranteService {
     RestauranteResponse atualizar(Long id, RestauranteRequest restauranteAtualizadoRequest);
     Optional<RestauranteResponse> buscarPorId(Long id);
     List<RestauranteResponse> buscarPorTaxaEntregaMaxima(BigDecimal taxaEntregaMaxima);
+    void DesativarRestaurante(Long id);
 }

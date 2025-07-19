@@ -95,4 +95,11 @@ public class RestauranteServiceImpl implements RestauranteService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void DesativarRestaurante(Long id) {
+        Restaurante restaurante = restauranteRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Restaurante não encontrado com ID: " + id));
+        restaurante.setAtivo(false);
+        restauranteRepository.save(restaurante);
+    }
 }

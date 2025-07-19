@@ -15,7 +15,7 @@ public interface ProdutoService {
 
     List<ProdutoResponse> buscarPorRestaurante(Long restauranteId);
     ProdutoResponse atualizar(Long id, ProdutoRequest produtoAtualizado);
-
+    void deletar(Long id);
     void alterarDisponibilidade(Long id, boolean disponivel);
     List<ProdutoResponse> buscarDisponiveis();
     List<ProdutoResponse> buscarPorCategoria(String categoria);

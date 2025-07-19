@@ -16,6 +16,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     boolean existsByEmail(String email);
     List<Cliente> findByAtivoTrue();
     List<ClienteResponse> findByNomeContainingIgnoreCase(String nome);
+    List<ClienteResponse> findByEmailContainingIgnoreCase(String email);
 
     @Query(value = "SELECT c.nome, COUNT(p.id) as total_pedidos " +
             "FROM cliente c " +

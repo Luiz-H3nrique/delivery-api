@@ -67,6 +67,10 @@ public class ClienteServiceImpl implements ClienteService {
         return clienteRepository.findByNomeContainingIgnoreCase(nome);
     }
     @Override
+    public List<ClienteResponse> buscarPorEmail(String email) {
+        return clienteRepository.findByEmailContainingIgnoreCase(email);
+    }
+    @Override
     public List<ClienteRanking> rankingClientesPorPedidos() {
         return clienteRepository.rankingClientesPorPedidos();
     }
