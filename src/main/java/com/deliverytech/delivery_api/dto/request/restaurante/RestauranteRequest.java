@@ -33,4 +33,5 @@ public record RestauranteRequest(
         @DecimalMin(value = "0.0", inclusive = false, message = "A avaliação deve ser maior que zero.")
         BigDecimal avaliacao
 
+
 ){}
