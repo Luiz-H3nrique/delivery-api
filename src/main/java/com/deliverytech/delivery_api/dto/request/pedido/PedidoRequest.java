@@ -24,4 +24,5 @@ public record PedidoRequest(
         @Size(min = 1, message = "O pedido deve conter pelo menos um item.")
         List<ItemPedidoRequest> itensPedido
 
+
 ) {}
