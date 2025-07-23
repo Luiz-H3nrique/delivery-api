@@ -27,6 +27,11 @@ public record RestauranteRequest(
         @NotNull(message = "O tempo de entrega é obrigatório.")
         @Min(value = 10, message = "O tempo de entrega deve ser no mínimo 10 minutos.")
         @Max(value = 120, message = "O tempo de entrega deve ser no máximo 120 minutos.")
-        Integer tempoEntregaMinutos
+        Integer tempoEntregaMinutos,
+
+        @NotNull
+        @DecimalMin(value = "0.0", inclusive = false, message = "A avaliação deve ser maior que zero.")
+        BigDecimal avaliacao
+
 
 ){}

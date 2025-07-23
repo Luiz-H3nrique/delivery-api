@@ -1,5 +1,6 @@
 package com.deliverytech.delivery_api.service.Imp;
 
+import com.deliverytech.delivery_api.dto.request.pedido.ItemRequest;
 import com.deliverytech.delivery_api.dto.request.pedido.PedidoRequest;
 import com.deliverytech.delivery_api.dto.response.ProdutoResponse;
 import com.deliverytech.delivery_api.dto.response.pedido.PedidoResponse;
@@ -7,6 +8,7 @@ import com.deliverytech.delivery_api.dto.response.restaurante.RestauranteRespons
 import com.deliverytech.delivery_api.mapper.PedidoMapper;
 import com.deliverytech.delivery_api.mapper.ProdutoMapper;
 import com.deliverytech.delivery_api.mapper.RestauranteMapper;
+import com.deliverytech.delivery_api.mapper.StatusPedidoMapper;
 import com.deliverytech.delivery_api.model.*;
 import com.deliverytech.delivery_api.repository.PedidoRepository;
 import com.deliverytech.delivery_api.service.ClienteService;
@@ -98,14 +100,21 @@ public class PedidoServiceImpl implements PedidoService {
                 .orElseGet(List::of);
     }
 
-    @Transactional
     @Override
     public PedidoResponse atualizarStatus(Long id, String status) {
         Pedido pedido = pedidoRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Pedido não encontrado"));
 
-        pedido.setStatus(StatusPedido.valueOf(status.toUpperCase()));
-        return PedidoMapper.toResponse(pedidoRepository.save(pedido));
+        StatusPedido novoStatus;
+        try {
+            novoStatus = StatusPedidoMapper.mapStatus(status);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Status informado é inválido: " + status, e);
+        }
+
+        pedido.setStatus(novoStatus);
+        Pedido pedidoAtualizado = pedidoRepository.save(pedido);
+        return PedidoMapper.toResponse(pedidoAtualizado);
     }
 
 
@@ -153,8 +162,46 @@ public class PedidoServiceImpl implements PedidoService {
         return PedidoMapper.toResponse(pedido);
     }
 
+    @Override
+    @Transactional
+    public PedidoResponse adicionarItem(Long pedidoId, ItemRequest itemRequest) {
+        Pedido pedido = pedidoRepository.findById(pedidoId)
+                .orElseThrow(() -> new EntityNotFoundException("Pedido não encontrado"));
+
+        ProdutoResponse produto = produtoService.buscarPorId(itemRequest.produtoId())
+                .orElseThrow(() -> new EntityNotFoundException("Produto não encontrado: " + itemRequest.produtoId()));
+
+        ItemPedido itemPedido = ItemPedido.builder()
+                .produto(ProdutoMapper.toEntityFromResponse(produto))
+                .quantidade(itemRequest.quantidade())
+                .precoUnitario(produto.preco())
+                .pedido(pedido)
+                .build();
+
+        itemPedido.setSubtotal();
+
+        pedido.getItens().add(itemPedido);
+        pedido.calcularValorTotal();
+
+        pedidoRepository.save(pedido);
+
+        return PedidoMapper.toResponse(pedido);
+    }
 
 
+    @Override
+    @Transactional(readOnly = true)
+    public PedidoResponse confirmarPedido(Long id) {
+        Pedido pedido = pedidoRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Pedido não encontrado"));
+
+        if (pedido.getStatus() != StatusPedido.CRIADO) {
+            throw new IllegalStateException("Somente pedidos pendentes podem ser confirmados");
+        }
+        pedido.setStatus(StatusPedido.CONFIRMADO);
+        Pedido pedidoAtualizado = pedidoRepository.save(pedido);
+        return PedidoMapper.toResponse(pedidoAtualizado);
+    }
 
     @Transactional
     @Override

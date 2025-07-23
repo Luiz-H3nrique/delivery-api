@@ -1,5 +1,6 @@
 package com.deliverytech.delivery_api.service;
 
+import com.deliverytech.delivery_api.dto.request.pedido.ItemRequest;
 import com.deliverytech.delivery_api.dto.request.pedido.PedidoRequest;
 import com.deliverytech.delivery_api.dto.response.pedido.PedidoResponse;
 
@@ -18,6 +19,8 @@ public interface PedidoService {
     PedidoResponse atualizarStatus(Long id, String status);
 
     PedidoResponse atualizarPedido(Long id, PedidoRequest pedidoRequest);
+    PedidoResponse adicionarItem(Long pedidoId, ItemRequest itemrequest);
 
+    PedidoResponse confirmarPedido(Long id);
     void cancelar(Long id);
 }

@@ -1,5 +1,6 @@
 package com.deliverytech.delivery_api.controller;
 
+import com.deliverytech.delivery_api.dto.request.pedido.ItemRequest;
 import com.deliverytech.delivery_api.dto.request.pedido.PedidoRequest;
 import com.deliverytech.delivery_api.dto.response.pedido.PedidoResponse;
 import com.deliverytech.delivery_api.service.PedidoService;
@@ -29,19 +30,19 @@ public class PedidoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PedidoResponse> buscarPorId(@RequestParam Long id) {
+    public ResponseEntity<PedidoResponse> buscarPorId(@PathVariable Long id) {
 
         return  pedidoService.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-    @GetMapping("/cliente")
-    public ResponseEntity<List<PedidoResponse>> listarPorCliente(@RequestParam Long clienteId) {
+    @GetMapping("/cliente/{clienteId}")
+    public ResponseEntity<List<PedidoResponse>> listarPorCliente(@PathVariable Long clienteId) {
         List<PedidoResponse> pedidos = pedidoService.listarPorCliente(clienteId);
         return ResponseEntity.ok(pedidos);
     }
-    @GetMapping("/restaurante")
-    public ResponseEntity<List<PedidoResponse>> listarPorRestaurante(@RequestParam Long restauranteId) {
+    @GetMapping("/restaurante/{restauranteId}")
+    public ResponseEntity<List<PedidoResponse>> listarPorRestaurante(@PathVariable Long restauranteId) {
         List<PedidoResponse> pedidos = pedidoService.listarPorRestaurante(restauranteId);
         return ResponseEntity.ok(pedidos);
     }
@@ -49,6 +50,28 @@ public class PedidoController {
     public ResponseEntity<PedidoResponse> atualizarStatus(@PathVariable Long id, @RequestParam String status) {
         PedidoResponse pedidoAtualizado = pedidoService.atualizarStatus(id, status);
         return ResponseEntity.ok(pedidoAtualizado);
+    }
+
+    @PostMapping("/{pedidoId}/itens")
+    public ResponseEntity<PedidoResponse> adicionarItem(
+            @PathVariable Long pedidoId,
+            @RequestParam Long produtoId,
+            @RequestParam Integer quantidade,
+            @RequestParam(required = false) String observacoes
+    ) {
+        ItemRequest itemRequest = new ItemRequest(produtoId, quantidade, observacoes);
+        PedidoResponse pedido = pedidoService.adicionarItem(pedidoId, itemRequest);
+
+        return ResponseEntity
+                .ok()
+                .body(pedido);
+    }
+
+
+    @PutMapping("/{id}/confirmar")
+    public ResponseEntity<PedidoResponse> confirmarPedido(@PathVariable Long id) {
+        PedidoResponse pedidoConfirmado = pedidoService.confirmarPedido(id);
+        return ResponseEntity.ok(pedidoConfirmado);
     }
 
     @PutMapping("/{id}")

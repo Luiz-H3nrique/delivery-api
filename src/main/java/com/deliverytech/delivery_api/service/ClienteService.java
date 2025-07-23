@@ -16,6 +16,7 @@ public interface ClienteService {
     List<Cliente> listarAtivos();
     Cliente atualizar(Long id, Cliente clienteAtualizado);
     List<ClienteResponse> buscarPorNome(String nome);
+    List<ClienteResponse> buscarPorEmail(String email);
     List<ClienteRanking> rankingClientesPorPedidos();
     void ativarDesativar(Long id);
     void excluir(Long id);

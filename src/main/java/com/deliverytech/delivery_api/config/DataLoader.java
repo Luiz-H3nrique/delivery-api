@@ -77,6 +77,7 @@ public class DataLoader implements CommandLineRunner {
         r1.setTaxaEntrega(new BigDecimal("5.00"));
         r1.setTempoEntregaMinutos(30);
         r1.setTelefone("11999999999");
+        r1.setAvaliacao(new BigDecimal("5.0"));
         r1.setEndereco(new Endereco("Rua A", "10", "Centro", "CidadeX", "SP", "12345-111"));
         r1.setAtivo(true);
 
@@ -85,6 +86,7 @@ public class DataLoader implements CommandLineRunner {
         r2.setCategoria("Japonesa");
         r2.setEndereco(new Endereco("Rua D", "15", "Jardim", "CidadeX", "SP", "12345-444"));
         r2.setTaxaEntrega(new BigDecimal("8.00"));
+        r2.setAvaliacao(new BigDecimal("4.5"));
         r2.setTelefone("11988888888");
         r2.setTempoEntregaMinutos(45);
         r2.setAtivo(true);

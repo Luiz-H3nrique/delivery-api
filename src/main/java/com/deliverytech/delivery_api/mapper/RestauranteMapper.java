@@ -19,6 +19,7 @@ public class RestauranteMapper {
                 .taxaEntrega(dto.taxaEntrega())
                 .tempoEntregaMinutos(dto.tempoEntregaMinutos())
                 .endereco(dto.endereco())
+                .avaliacao(dto.avaliacao())
                 .ativo(true)
                 .build();
     }
@@ -32,6 +33,7 @@ public class RestauranteMapper {
                 restaurante.getTelefone(),
                 restaurante.getTaxaEntrega(),
                 restaurante.getTempoEntregaMinutos(),
+                restaurante.getAvaliacao(),
                 restaurante.isAtivo()
 
         );

@@ -12,5 +12,6 @@ public record RestauranteResponse(
         String telefone,
         BigDecimal taxaEntrega,
         Integer tempoEntregaMinutos,
+        BigDecimal avaliacao,
         boolean ativo
 ) {}

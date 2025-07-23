@@ -30,8 +30,7 @@ public class RestauranteController {
 
     @GetMapping("/categoria/buscar")
     public ResponseEntity<List<RestauranteResponse>> buscarPorCategoria(@RequestBody @Valid RestauranteCategoriaRequest restauranteCategoriaRequest) {
-        List<RestauranteResponse> restaurantes = restauranteService.buscarPorCategoria(restauranteCategoriaRequest
-                .categoria());
+        List<RestauranteResponse> restaurantes = restauranteService.buscarPorCategoria(restauranteCategoriaRequest.categoria());
         return restaurantes.isEmpty()
                 ? ResponseEntity.notFound().build()
                 : ResponseEntity.ok(restaurantes);
@@ -63,7 +62,7 @@ public class RestauranteController {
     }
 
     @GetMapping("/nome/buscar")
-    public ResponseEntity<List<RestauranteResponse>> buscarPorNome(@RequestParam RestauranteNomeRequest restauranteNomeRequest) {
+    public ResponseEntity<List<RestauranteResponse>> buscarPorNome(@RequestBody @Valid RestauranteNomeRequest restauranteNomeRequest) {
         List<RestauranteResponse> restaurantes = restauranteService.buscarPorNome(restauranteNomeRequest.nome());
         return restaurantes.isEmpty()
                 ? ResponseEntity.notFound().build()
@@ -87,6 +86,12 @@ public class RestauranteController {
 
         RestauranteResponse response = restauranteService.atualizar(id, restauranteRequest);
         return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/desativar/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        restauranteService.DesativarRestaurante(id);
+        return ResponseEntity.noContent().build();
     }
 }
 
