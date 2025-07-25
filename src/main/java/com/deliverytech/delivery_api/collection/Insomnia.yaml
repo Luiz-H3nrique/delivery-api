@@ -1,0 +1,1133 @@
+type: collection.insomnia.rest/5.0
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1738370376927
+  modified: 1738370376927
+  description: ""
+collection:
+  - name: Delivery Tech
+    meta:
+      id: fld_74ccfbdff6ca4cb182359e6a47d4ba42
+      created: 1744508304114
+      modified: 1744508304114
+      sortKey: -1744508304114
+      description: ""
+  - name: Delivery Tech API
+    meta:
+      id: fld_9bfef09a4a4044699db0ca6bed8f1800
+      created: 1752455844417
+      modified: 1752455844417
+      sortKey: -1752455844417
+      description: ""
+    children:
+      - name: clientes
+        meta:
+          id: fld_c22bf0d6fcc9402ea5a62263741c98a0
+          created: 1752455854259
+          modified: 1752455854259
+          sortKey: -1752455854259
+          description: ""
+        children:
+          - url: http://localhost:8080/api/clientes
+            name: Criar cliente
+            meta:
+              id: req_9b3a158d3e07492cbaf5e874c1b91fa0
+              created: 1752456009925
+              modified: 1752780810378
+              isPrivate: false
+              description: ""
+              sortKey: -1752456009925
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "nome": "João da Silva",
+                  "email": "joao@email.com",
+                  "telefone": "(11) 99999-9999",
+                  "endereco": {
+                    "rua": "Rua das Flores",
+                    "numero": "123",
+                    "bairro": "Jardim das Acácias",
+                    "cidade": "São Paulo",
+                    "estado": "SP",
+                    "cep": "01234-567"
+                  }
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/clientes
+            name: Listar Clientes Ativos
+            meta:
+              id: req_7255b7a540334172b512f16645571b41
+              created: 1752456076918
+              modified: 1752628844676
+              isPrivate: false
+              description: ""
+              sortKey: -1748483192545.5
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/clientes/1/status
+            name: Alternar Status Ativo/Inativo
+            meta:
+              id: req_9aa611b953514d30acab8dd5a1016850
+              created: 1752456128519
+              modified: 1752936309627
+              isPrivate: false
+              description: ""
+              sortKey: -1746496783855.75
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: ""
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/clientes/1
+            name: Buscar cliente por ID
+            meta:
+              id: req_38cbf6086e8843b793b32224781f86b0
+              created: 1752459404556
+              modified: 1752628839241
+              isPrivate: false
+              description: ""
+              sortKey: -1750469601235.25
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/clientes/1
+            name: "Atualizar cliente "
+            meta:
+              id: req_f2b7281d16df4865ad1a9f5f1c907b79
+              created: 1752459465533
+              modified: 1752936269309
+              isPrivate: false
+              description: ""
+              sortKey: -1747489988200.625
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "nome": "João da Silva medeiros",
+                  "email": "joao01@email.com",
+                  "telefone": "(011) 99999-9999",
+                  "endereco": {
+                    "rua": "Rua das rosas",
+                    "numero": "123",
+                    "bairro": "Jardim das Acácias",
+                    "cidade": "São Paulo",
+                    "estado": "SP",
+                    "cep": "01234-567"
+                  }
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/clientes/ranking
+            name: Ranking Clientes
+            meta:
+              id: req_6c988671d57842f9b3bdc61dc3964eeb
+              created: 1752776539162
+              modified: 1752776544666
+              isPrivate: false
+              description: ""
+              sortKey: -1747986590373.0625
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/clientes/3
+            name: Deletar cliente por ID
+            meta:
+              id: req_cdb568b8a2294be9a40ff4e94224c1de
+              created: 1752886764976
+              modified: 1752937894169
+              isPrivate: false
+              description: ""
+              sortKey: -1749476396890.375
+            method: DELETE
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/clientes
+            name: "listar todos clientes "
+            meta:
+              id: req_63cf4043241d4b5f8bd2459d813c7099
+              created: 1752936881296
+              modified: 1752936895757
+              isPrivate: false
+              description: ""
+              sortKey: -1749972999062.8125
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/clientes/email
+            name: Buscar cliente por email
+            meta:
+              id: req_311032ddf151484092f419567d6ff0ff
+              created: 1752937565042
+              modified: 1752937600386
+              isPrivate: false
+              description: ""
+              sortKey: -1750221300149.0312
+            method: GET
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "email": "ana@email.com"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/clientes/nome
+            name: Buscar cliente por nome
+            meta:
+              id: req_5bcb24f55ae4496bbe7f65f750251e7a
+              created: 1752937690724
+              modified: 1752937763835
+              isPrivate: false
+              description: ""
+              sortKey: -1750097149605.9219
+            method: GET
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "nome": "ana"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: restaurantes
+        meta:
+          id: fld_d0608b7e70b7483ca3424abc5ca4fcac
+          created: 1752527702484
+          modified: 1752527726400
+          sortKey: -1752527702684
+          description: ""
+        children:
+          - url: http://localhost:8080/api/restaurantes
+            name: Criar restaurante
+            meta:
+              id: req_dbb4455cf6184493a11771acef930aa4
+              created: 1752527719895
+              modified: 1752938836766
+              isPrivate: false
+              description: ""
+              sortKey: -1752527894162
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "nome": "Churrascaria Gaúcha",
+                  "categoria": "Churrasco",
+                  "telefone": "11987654321",
+                  "taxaEntrega": 10.50,
+                  "tempoEntregaMinutos": 45,
+                	"avaliacao" : 4.00,
+                  "endereco": {
+                		"rua": "Rua das rosas",
+                		"numero": "12",
+                		"bairro": "Jardim das Acácias",
+                		"cidade": "São Paulo",
+                		"estado": "SP",
+                		"cep": "01234-567"
+                	}
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/restaurantes/todos
+            name: listar todos
+            meta:
+              id: req_8bdee30329724d19b5e014ae9f77124f
+              created: 1752527894062
+              modified: 1752628794428
+              isPrivate: false
+              description: ""
+              sortKey: -1752527894062
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/restaurantes/nome/buscar
+            name: Buscar restaurante por nome
+            meta:
+              id: req_4efbb73f15554e37853e2d11e4646991
+              created: 1752538139174
+              modified: 1752877750713
+              isPrivate: false
+              description: ""
+              sortKey: -1752527776211.5
+            method: GET
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "nome": "Pizza Place"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/restaurantes/3
+            name: Editar restaurante por ID
+            meta:
+              id: req_fae0f5ef239944ab8a4a28d5b19e6d8c
+              created: 1752538288172
+              modified: 1752938634886
+              isPrivate: false
+              description: ""
+              sortKey: -1752527894262
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "nome": "Churrascaria Gaúcha",
+                  "categoria": "Churrasco",
+                  "telefone": "11987654321",
+                  "taxaEntrega": 10.50,
+                  "tempoEntregaMinutos": 45,
+                	"avaliacao" : 4.00,
+                  "endereco": {
+                		"rua": "Rua das rosas",
+                		"numero": "50",
+                		"bairro": "Jardim das Acácias",
+                		"cidade": "São Paulo",
+                		"estado": "SP",
+                		"cep": "01234-567"
+                	}
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/restaurantes/taxaEntrega/buscar
+            name: Buscar restaurante por Taxa Entrega Maxima
+            meta:
+              id: req_bdeb50fba6484693996f393cbf628f44
+              created: 1752877840583
+              modified: 1752938225011
+              isPrivate: false
+              description: ""
+              sortKey: -1752491893068.25
+            method: GET
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "taxaEntregaMaxima": "8.00"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/restaurantes/categoria/buscar
+            name: Buscar restaurante por Categoria
+            meta:
+              id: req_af383c4c66224f64b9b3b1251b331b98
+              created: 1752877992926
+              modified: 1752938326994
+              isPrivate: false
+              description: ""
+              sortKey: -1752473951496.625
+            method: GET
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "categoria": "Churrasco"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/restaurantes/avaliacao/buscar
+            name: Buscar restaurante por avaliacao
+            meta:
+              id: req_dbe10db903894a4fabc5ca164f2b31e6
+              created: 1752878164605
+              modified: 1752878187495
+              isPrivate: false
+              description: ""
+              sortKey: -1752464980710.8125
+            method: GET
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "avaliacaoMinima": "5"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/restaurantes/ativos
+            name: Listar Restaurantes Ativos
+            meta:
+              id: req_1188cb80073b4c3e9414ed11df6b52ee
+              created: 1752878325987
+              modified: 1752878809938
+              isPrivate: false
+              description: ""
+              sortKey: -1752460495317.9062
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/restaurantes/desativar/1
+            name: Desativar restaurante
+            meta:
+              id: req_7385a48b58e34bb7803e5766c0b6d02b
+              created: 1752878590000
+              modified: 1752878696490
+              isPrivate: false
+              description: ""
+              sortKey: -1752458252621.4531
+            method: DELETE
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: produto
+        meta:
+          id: fld_57e35137ae4f43d4b719c5a0701c1fda
+          created: 1752878970821
+          modified: 1752878970821
+          sortKey: -1752878970821
+          description: ""
+        children:
+          - url: http://localhost:8080/api/produtos/1
+            name: "listar produto por id "
+            meta:
+              id: req_be54e0de82d74dcb906b86b25ee2ca1a
+              created: 1752878976389
+              modified: 1752879365627
+              isPrivate: false
+              description: ""
+              sortKey: -1752878976389
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/produtos
+            name: Cadastrar produto
+            meta:
+              id: req_5f20ddb9e18f48ebafb1db9006c7901e
+              created: 1752879223792
+              modified: 1752879334754
+              isPrivate: false
+              description: ""
+              sortKey: -1752878976489
+            method: POST
+            body:
+              mimeType: application/json
+              text: >
+                {
+                  "nome": "Banana Nevada",
+                  "descricao": "Banana flambada com sorvete de creme, calda de chocolate e chantilly",
+                  "preco": 18.90,
+                  "categoria": "Sobremesa",
+                  "disponivel": true,
+                  "restauranteId": 1
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/produtos/1/disponibilidade?disponivel=true
+            name: Mudar disponibilidade de produto
+            meta:
+              id: req_5ab48b5e6b5a482bb866016198beb325
+              created: 1752879546733
+              modified: 1752879593840
+              isPrivate: false
+              description: ""
+              sortKey: -1752703435325.5
+            method: PATCH
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/produtos/restaurante/1
+            name: listar produtos por restaurante
+            meta:
+              id: req_70fd0ffc6d7b46b38f23518389eeb899
+              created: 1752879637033
+              modified: 1752879665234
+              isPrivate: false
+              description: ""
+              sortKey: -1752615664793.75
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/produtos/mais-vendidos
+            name: Relatorio de mais vendidos
+            meta:
+              id: req_cfa30bd5e0fa47efaaf41ddaeb019c5c
+              created: 1752879731311
+              modified: 1752879777246
+              isPrivate: false
+              description: ""
+              sortKey: -1752571779527.875
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/produtos/disponiveis
+            name: Listar produtos disponiveis
+            meta:
+              id: req_990ef02cbdf54964a680068e68cb6d77
+              created: 1752879797251
+              modified: 1752879816437
+              isPrivate: false
+              description: ""
+              sortKey: -1752549836894.9375
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/produtos/categoria/Pizzaria
+            name: Buscar produtos por categoria
+            meta:
+              id: req_938e17e7fcd740f198945de31729916f
+              created: 1752879847911
+              modified: 1752879899382
+              isPrivate: false
+              description: ""
+              sortKey: -1752538865578.4688
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/produtos/6
+            name: "atualizar produto "
+            meta:
+              id: req_63cfcf9e2e754607b763e77a46681fc5
+              created: 1752939072287
+              modified: 1752939386951
+              isPrivate: false
+              description: ""
+              sortKey: -1752878976439
+            method: PUT
+            body:
+              mimeType: application/json
+              text: >
+                {
+                  "nome": "Banana Nevada",
+                  "descricao": "Banana flambada com sorvete de creme, calda de chocolate e chantilly",
+                  "preco": 17.90,
+                  "categoria": "Sobremesa",
+                  "disponivel": true,
+                  "restauranteId": 1
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/produtos/6
+            name: "Deletar produto por id "
+            meta:
+              id: req_9a3a483b5de042eb9ede7b80ef082b45
+              created: 1752939327555
+              modified: 1752939389041
+              isPrivate: false
+              description: ""
+              sortKey: -1752878976414
+            method: DELETE
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: pedido
+        meta:
+          id: fld_951e6af5f2584c8f81c8c5dddc8fbfb6
+          created: 1752880578152
+          modified: 1752880578152
+          sortKey: -1752879770143
+          description: ""
+        children:
+          - url: http://localhost:8080/api/pedidos
+            name: Criar pedido
+            meta:
+              id: req_47bf23148a27421a97d1ee9308a68679
+              created: 1752880624810
+              modified: 1752939591049
+              isPrivate: false
+              description: ""
+              sortKey: -1752880937376
+            method: POST
+            body:
+              mimeType: application/json
+              text: |
+                {
+                  "clienteId": 1,
+                  "restauranteId": 1,
+                  "observacoes": "Servir quente.",
+                  "enderecoEntrega": {
+                    "rua": "Rua do Café",
+                    "numero": "456",
+                    "bairro": "Vila Gourmet",
+                    "cidade": "Campinas",
+                    "estado": "SP",
+                    "cep": "13000-000"
+                  },
+                  "itensPedido": [
+                    {
+                      "produtoId": 6,
+                      "quantidade": 1,
+                      "precoUnitario": 18.90
+                    }
+                  ]
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/pedidos/3
+            name: listar pedido por id
+            meta:
+              id: req_c0796c4abf444209a55fef5ebf92e9c6
+              created: 1752880937276
+              modified: 1752881362650
+              isPrivate: false
+              description: ""
+              sortKey: -1752880937276
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/pedidos/restaurante/2
+            name: listar pedido por restaurante
+            meta:
+              id: req_d65f921a89144b8d81746e5ebb491383
+              created: 1752881459319
+              modified: 1752942653797
+              isPrivate: false
+              description: ""
+              sortKey: -1752880781043
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/pedidos/cliente/2
+            name: listar pedido por cliente
+            meta:
+              id: req_c5625bd32c41495e803c01a08ebbce65
+              created: 1752881887064
+              modified: 1752942687019
+              isPrivate: false
+              description: ""
+              sortKey: -1752880702926.5
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/pedidos/3
+            name: atualizar pedido
+            meta:
+              id: req_c7b30a078595494ea712d00ec5028995
+              created: 1752882105897
+              modified: 1752939593131
+              isPrivate: false
+              description: ""
+              sortKey: -1752880937326
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |
+                {
+                  "clienteId": 1,
+                  "restauranteId": 1,
+                  "observacoes": "",
+                  "enderecoEntrega": {
+                    "rua": "Rua do Café",
+                    "numero": "456",
+                    "bairro": "Vila Gourmet",
+                    "cidade": "Campinas",
+                    "estado": "SP",
+                    "cep": "13000-000"
+                  },
+                  "itensPedido": [
+                    {
+                      "produtoId": 6,
+                      "quantidade": 2,
+                      "precoUnitario": 18.90
+                    }
+                  ]
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/pedidos/3/status?status=PREPARANDO
+            name: "Mudar status do Pedido "
+            meta:
+              id: req_e1bfd5368a8148d2a0a9a0c92e890c10
+              created: 1752884366732
+              modified: 1752942384569
+              isPrivate: false
+              description: ""
+              sortKey: -1752880937285.375
+            method: PUT
+            body:
+              mimeType: application/json
+              text: ""
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/pedidos/3
+            name: "Cancelar Pedido "
+            meta:
+              id: req_fa898a38b34940949c295d89db1fb8c1
+              created: 1752886093637
+              modified: 1752939601899
+              isPrivate: false
+              description: ""
+              sortKey: -1752880937288.5
+            method: DELETE
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/pedidos/2/confirmar
+            name: "Confirmar Pedido "
+            meta:
+              id: req_b44872f03238458fa9c8db9eed4702d3
+              created: 1752941835938
+              modified: 1752942387767
+              isPrivate: false
+              description: ""
+              sortKey: -1752880937286.9375
+            method: PUT
+            body:
+              mimeType: application/json
+              text: ""
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/api/pedidos/2/itens?produtoId=1&quantidade=6
+            name: Adicionar itens ao Pedido
+            meta:
+              id: req_f5506ead19f9459dab52690c1f841c9f
+              created: 1752941985763
+              modified: 1752942380926
+              isPrivate: false
+              description: ""
+              sortKey: -1752880937282.25
+            method: POST
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Health Check
+        meta:
+          id: fld_fc7826ca8b374953afc92cdbff3f76ea
+          created: 1752886913336
+          modified: 1752886913336
+          sortKey: -1752886913336
+          description: ""
+        children:
+          - url: http://localhost:8080/info
+            name: info
+            meta:
+              id: req_7fd3dfa90a664ca6a44ba83cb1f100f5
+              created: 1752886935688
+              modified: 1752886966831
+              isPrivate: false
+              description: ""
+              sortKey: -1752886935688
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/
+            name: home
+            meta:
+              id: req_6a9e4913a8a749b39c25d1f1ee9b998c
+              created: 1752886973927
+              modified: 1752887030361
+              isPrivate: false
+              description: ""
+              sortKey: -1752886973927
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/health
+            name: health
+            meta:
+              id: req_8f0de81fb210435aa87b82197a17ed92
+              created: 1752886986543
+              modified: 1752886993828
+              isPrivate: false
+              description: ""
+              sortKey: -1752883936482
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/10.3.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1744508240949
+    modified: 1744508240949
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1744508240845
+    modified: 1744508240845
+    isPrivate: false
